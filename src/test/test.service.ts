@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Test } from './schemas/test.schema';
 import { Model } from 'mongoose';
-import { CreateTestDto } from './dto/test.schema.dto';
+import { CreateTestDto, GetTestDto } from './dto/test.schema.dto';
 
 @Injectable()
 export class TestService {
@@ -17,6 +17,11 @@ export class TestService {
 
   async findByCondition(condition: any): Promise<CreateTestDto[]> {
     const test = this.testModel.find(condition);
+    return test;
+  }
+  async findOneTest(id: string): Promise<GetTestDto> {
+    const test = this.testModel.findById(id);
+
     return test;
   }
 }

@@ -10,9 +10,14 @@ export class CompletedTestService {
     private readonly completedTestModel: Model<CompletedTest>,
   ) {}
 
-  async create(data: CreateTestResultDto): Promise<CreateTestResultDto> {
+  async create(data: CreateTestResultDto): Promise<CompletedTest> {
     const createTestResult = new this.completedTestModel(data);
 
     return createTestResult.save();
+  }
+
+  async find() {
+    const table = await this.completedTestModel.find({}, 'testId');
+    return table;
   }
 }
