@@ -14,6 +14,7 @@ export const TestSchema = new mongoose.Schema({
 export interface Test extends mongoose.Document {
   title: string;
   questions: {
+    _id: string;
     question: string;
     options: string[];
     correctOptionIndex: number;
